@@ -1,0 +1,38 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Rain gauge",
+      "price": 1200
+    },
+    {
+      "id": 2,
+      "name": ""
+    },
+    {
+      "name": "new",
+      "price": 20,
+      "id": 6
+    },
+    {
+      "name": "new",
+      "price": 10,
+      "id": 7
+    },
+    {
+      "name": "added",
+      "price": 200,
+      "id": 8
+    },
+    {
+      "name": "some",
+      "price": 0,
+      "id": 11
+    },
+    {
+      "name": "new",
+      "price": 2,
+      "id": 12
+    }
+  ]
+}

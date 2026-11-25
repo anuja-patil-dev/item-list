@@ -1,0 +1,11 @@
+<p>itemlist works!</p>
+@for(item of itemsList;track item.id){
+    <p>{{item.id}}</p>
+    <p>{{item.name}}</p>
+}
+@for(i of item;track $index){
+   <p>{{i}}</p>
+}
+@for(name of names;track $index){
+   <p>{{name}}</p>
+}

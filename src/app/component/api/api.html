@@ -1,0 +1,27 @@
+<p>api works!</p>
+<h3>Item Data</h3>
+@for(i of items;track i.id){
+    <p>{{i.id}}.{{i.name}} {{i.price}} <span> <button (click)="delete(i.id)">Delete</button></span> <span> <button (click)="update(i.id)">Update</button></span></p>
+   
+    
+}@empty {
+    <p>No Items</p>
+}
+<input
+  type="text"
+  placeholder="Enter your name"
+  [(ngModel)]="name"
+  value="name"
+/>
+<input
+  type="number"
+  placeholder="Enter price"
+  [(ngModel)]="price"
+/>
+@if (isupdated) {
+  <button (click)="updateItem()">Update</button>
+} @else {
+  <button (click)="addItem()">Add</button>
+}
+
+<button (click)="getdata()">Get Data</button>
