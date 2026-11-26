@@ -1,12 +1,40 @@
 <p>api works!</p>
 <h3>Item Data</h3>
-@for(i of items;track i.id){
-    <p>{{i.id}}.{{i.name}} {{i.price}} <span> <button (click)="delete(i.id)">Delete</button></span> <span> <button (click)="update(i.id)">Update</button></span></p>
-   
-    
-}@empty {
-    <p>No Items</p>
-}
+<table class="table table-striped table-hover table-bordered  text-center">
+  <thead>
+    <tr>
+      <th>Sr No.</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (itemsLoading) {
+      <tr>
+        <td>loading</td>
+
+      </tr>
+    }
+    @else{
+
+      @for(i of items;track i.id){
+        <tr>
+          <td>{{i.id}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.price}}</td>
+          <td> <button (click)="delete(i.id)">Delete</button> <button (click)="update(i.id)">Update</button></td>
+          <td></td>
+        </tr> 
+      }@empty {
+          <tr>
+            No Item Present
+          </tr>
+      }
+    }
+  </tbody>
+</table>
+
 <input
   type="text"
   placeholder="Enter your name"

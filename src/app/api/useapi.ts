@@ -27,5 +27,9 @@ export class Useapi {
         console.log("updated completed")
         return firstValueFrom(this.http.put<Item>(`${this.api}/${item.id}`,item))
     }
+    getItemById(id:number):Promise<Item>{
+        console.log(id,'get data')
+        return firstValueFrom(this.http.get<Item>(`${this.api}/${id}`))
+    }
 
 }

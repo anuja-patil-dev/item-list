@@ -14,16 +14,22 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './api.html',
 })
 export class Api {
-  items: Item[] = []
+  items: Item[] | null = [] 
   id: number = 0
   price: number = 0
   name: string = ''
-  selecetedData: Item | undefined
+  selecetedData: Item | undefined;
+  itemsLoading: boolean = false;
   constructor(private data: Useapi) {
-
   }
-  async getdata(): Promise<void> {
-    this.items = await this.data.getAll()
+  async getdata() {
+    this.itemsLoading = true;
+    this.items = null;
+    const response = await this.data.getAll();
+    this.itemsLoading = false;
+    console.log(response)
+    this.items = [...response];
+    console.log(this.items)
   }
   async addItem(): Promise<void> {
     this.id = this.id + 1
@@ -32,14 +38,15 @@ export class Api {
     this.price = 0
   }
   async delete(id: number): Promise<void> {
+
     await this.data.deleteItem(id)
-    await this.data.getAll()
+    this.items=await this.data.getAll()
   }
   editId: number = 0
   isupdated: boolean = false
   update(id: number) {
     this.editId = id
-    this.selecetedData = this.items.find(
+    this.selecetedData = (this.items || []).find(
       value => value.id === this.editId
     );
 
@@ -51,7 +58,7 @@ export class Api {
     this.isupdated = true
   }
   async updateItem(): Promise<void> {
-    this.selecetedData = this.items.find(Value => Value.id === this.editId)
+    this.selecetedData = (this.items || []).find(Value => Value.id === this.editId)
     if (!this.selecetedData) {
       console.error('Item not found');
       return;
@@ -64,7 +71,7 @@ export class Api {
     this.isupdated = false;
     this.name = '';
     this.price = 0;
-     await this.data.getAll()
+    this.items= await this.data.getAll()
   }
 
 }
